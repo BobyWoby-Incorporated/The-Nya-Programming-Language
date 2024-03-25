@@ -24,6 +24,7 @@ enum TokenType{
     BIN_OP,
     UN_OP,
     CALL,
+    COMMA,
     PROTOTYPE,
 };
 struct Token{

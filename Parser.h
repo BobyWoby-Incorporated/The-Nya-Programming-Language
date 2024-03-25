@@ -17,6 +17,13 @@ public:
     void parse(std::vector<Token> tokens);
 private:
 
+    static std::unique_ptr<NumberExprAST> parseNumberLiteral(Token token);
+
+    static std::unique_ptr<StringExprAST> parseStringLiteral(Token token);
+
+    std::unique_ptr<ExprAST> parseExpression(std::vector<Token> *tokens, int index);
+
+    std::unique_ptr<ExprAST> ParsePrimary(Token token);
 };
 
 

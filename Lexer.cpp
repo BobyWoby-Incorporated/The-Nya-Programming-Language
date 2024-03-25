@@ -59,6 +59,9 @@ std::vector<Token> Lexer::tokenize(std::string code) {
             }
             tokens.push_back({TokenType::NUMBER_LITERAL, number});
         }
+        else if(c == ','){
+            tokens.push_back({TokenType::COMMA});
+        }
         else if(c == '\"'){
             std::string string;
             while(peek().has_value() && peek().value() != '\"'){
@@ -67,6 +70,10 @@ std::vector<Token> Lexer::tokenize(std::string code) {
             }
             eat(); // eat the \"
             tokens.push_back({TokenType::STRING_LITERAL, string});
+        }
+        else {
+            std::cerr << "UwU, it seems like someone has messed up >.> Whatever will u do?" << std::endl;
+            exit(1);
         }
     }
     return tokens;

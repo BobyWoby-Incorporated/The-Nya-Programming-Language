@@ -60,18 +60,18 @@ public:
 
 class CallExprAST : ExprAST{
     std::string callee;
-    std::vector<std::pair<std::unique_ptr<TypeExprAST>, std::unique_ptr<ExprAST>>> args;
+    std::vector<TypeExprAST> args;
 
 public:
-    CallExprAST(std::string callee,std::vector<std::pair<std::unique_ptr<TypeExprAST>, std::unique_ptr<ExprAST>>> args)
+    CallExprAST(std::string callee,std::vector<TypeExprAST> args)
     : callee(std::move(callee)), args(std::move(args)) {token = {TokenType::CALL, this->callee};}
 };
 
 class PrototypeExprAST : ExprAST{
     std::string name;
-    std::vector<std::pair<std::unique_ptr<TypeExprAST>, std::unique_ptr<ExprAST>>> args;
+    std::vector<TypeExprAST> args;
 public:
-    PrototypeExprAST(std::string name,  std::vector<std::pair<std::unique_ptr<TypeExprAST>, std::unique_ptr<ExprAST>>> args) :
+    PrototypeExprAST(std::string name,  std::vector<TypeExprAST> args) :
     name(std::move(name)), args(std::move(args)) {token = {TokenType::PROTOTYPE, this->name};}
 };
 
@@ -79,7 +79,8 @@ class FunctionExprAST : ExprAST{
     std::unique_ptr<PrototypeExprAST> proto;
     std::unique_ptr<ExprAST> body;
 public:
-    FunctionExprAST(std::unique_ptr<PrototypeExprAST> proto, std::unique_ptr<ExprAST> body) : proto(std::move(proto)), body(std::move(body)) {type = ExprType::Function;}
+    FunctionExprAST(std::unique_ptr<PrototypeExprAST> proto, std::unique_ptr<ExprAST> body) :
+    proto(std::move(proto)), body(std::move(body)) {token = {TokenType::FUNCTION};}
 };
 
 #endif //NYA_AST_H

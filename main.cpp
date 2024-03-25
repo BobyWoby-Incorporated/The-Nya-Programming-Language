@@ -49,7 +49,6 @@ int main(int argc, char **argv) {
 
     buffer << file.rdbuf();
     content = buffer.str();
-    std::cout << content << std::endl;
     std::vector<Token> tokens = lexer.tokenize(content);
 
     for(auto &token : tokens){
