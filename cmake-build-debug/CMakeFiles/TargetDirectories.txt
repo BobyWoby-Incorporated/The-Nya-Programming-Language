@@ -1,0 +1,7 @@
+/mnt/c/Users/bestd/CLionProjects/Nya/cmake-build-debug/CMakeFiles/intrinsics_gen.dir
+/mnt/c/Users/bestd/CLionProjects/Nya/cmake-build-debug/CMakeFiles/omp_gen.dir
+/mnt/c/Users/bestd/CLionProjects/Nya/cmake-build-debug/CMakeFiles/acc_gen.dir
+/mnt/c/Users/bestd/CLionProjects/Nya/cmake-build-debug/CMakeFiles/RISCVTargetParserTableGen.dir
+/mnt/c/Users/bestd/CLionProjects/Nya/cmake-build-debug/CMakeFiles/Nya.dir
+/mnt/c/Users/bestd/CLionProjects/Nya/cmake-build-debug/CMakeFiles/edit_cache.dir
+/mnt/c/Users/bestd/CLionProjects/Nya/cmake-build-debug/CMakeFiles/rebuild_cache.dir
