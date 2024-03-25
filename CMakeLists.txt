@@ -15,7 +15,7 @@ add_executable(Nya main.cpp
         Lexer.cpp
         Lexer.h
         NyaUtilites.h
-        NyaUtilites.h)
+        AST.h)
 
 llvm_map_components_to_libnames(llvm_libs support core irreader)
 

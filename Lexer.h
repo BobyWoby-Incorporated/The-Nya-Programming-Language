@@ -18,7 +18,11 @@ public:
     void printTokens();
 private:
     std::string code;
+    int pos = 0;
     std::vector<Token> tokens;
+
+    std::optional<char> peek(int ahead = 0);
+    char eat();
 };
 
 

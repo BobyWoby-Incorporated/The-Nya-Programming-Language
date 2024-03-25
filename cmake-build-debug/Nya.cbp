@@ -134,6 +134,9 @@
 				</MakeCommands>
 			</Target>
 		</Build>
+		<Unit filename="/mnt/c/Users/bestd/CLionProjects/Nya/AST.h">
+			<Option target="Nya"/>
+		</Unit>
 		<Unit filename="/mnt/c/Users/bestd/CLionProjects/Nya/Lexer.cpp">
 			<Option target="Nya"/>
 		</Unit>

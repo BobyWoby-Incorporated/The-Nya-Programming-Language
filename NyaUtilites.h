@@ -23,11 +23,11 @@ enum TokenType{
     STR_VAR,
     BIN_OP,
     UN_OP,
-
+    CALL,
+    PROTOTYPE,
 };
 struct Token{
     TokenType type;
     std::optional<std::string> value;
 };
-
 #endif //NYA_NYAUTILITES_H

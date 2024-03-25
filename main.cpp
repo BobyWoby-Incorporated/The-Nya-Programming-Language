@@ -7,6 +7,31 @@
 #include "Parser.h"
 
 
+std::string TokenTypeStringFormat[]{
+        "RETURN",
+        "ENDLINE",
+        "LEFT_PAREN",
+        "RIGHT_PAREN",
+        "LEFT_BRACE",
+        "RIGHT_BRACE",
+        "NUMBER_LITERAL",
+        "STRING_LITERAL",
+        "IDENTIFIER",
+        "FUNCTION",
+        "NUM_VAR",
+        "STR_VAR",
+        "BIN_OP",
+        "UN_OP",
+};
+
+std::string toString(Token token){
+    std::string str = TokenTypeStringFormat[token.type];
+    if(token.value.has_value()){
+        str += ", Value: " + token.value.value();
+    }
+    return str;
+}
+
 int main(int argc, char **argv) {
     Lexer lexer{};
     Parser parser{};
@@ -24,15 +49,11 @@ int main(int argc, char **argv) {
 
     buffer << file.rdbuf();
     content = buffer.str();
-    std::cout << content;
+    std::cout << content << std::endl;
     std::vector<Token> tokens = lexer.tokenize(content);
+
     for(auto &token : tokens){
-        if(token.value.has_value()){
-            std::cout << "Type: " << token.type << " Value: " << token.value.value() << std::endl;
-        }
-        else{
-            std::cout << "Type: " << token.type << std::endl;
-        }
+        std::cout << toString(token) << std::endl;
     }
 
 //    std::cout << "Hello, World!" << std::endl;

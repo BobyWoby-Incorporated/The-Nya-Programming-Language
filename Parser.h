@@ -7,13 +7,14 @@
 #include <string>
 #include "NyaUtilites.h"
 #include <vector>
+#include "AST.h"
 
 
 class Parser {
 public:
-    Parser();
-    ~Parser();
-
+    Parser() = default;
+    ~Parser() = default;
+    void parse(std::vector<Token> tokens);
 private:
 
 };
