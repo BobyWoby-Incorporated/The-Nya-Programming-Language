@@ -25,7 +25,10 @@ enum TokenType{
     UN_OP,
     CALL,
     COMMA,
-    PROTOTYPE,
+    NULL_VAL,
+    EXTERN,
+
+
 };
 struct Token{
     TokenType type;

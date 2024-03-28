@@ -212,4 +212,5 @@ CMakeFiles/Nya.dir/main.cpp.o: \
  /usr/include/c++/11/bits/stream_iterator.h \
  /usr/include/c++/11/bits/uses_allocator_args.h \
  /usr/include/c++/11/pstl/glue_memory_defs.h \
- /usr/include/c++/11/pstl/execution_defs.h
+ /usr/include/c++/11/pstl/execution_defs.h /usr/include/c++/11/variant \
+ /usr/include/c++/11/bits/parse_numbers.h

@@ -6,81 +6,65 @@
 #define NYA_AST_H
 
 #include <memory>
+#include <utility>
+#include <variant>
 
-enum class ExprType{
-    Number,
-    String,
-    Variable,
-    Binary,
-    Call,
-    Prototype,
-    Function
-};
 
 class ExprAST {
 public:
+    TokenType type;
     virtual ~ExprAST() = default;
+};
+
+class NumberExprAST : public ExprAST{
     Token token;
-};
-
-class NumberExprAST : ExprAST{
-    double val;
 public:
-    NumberExprAST(double val) : val(val) {token = {TokenType::NUMBER_LITERAL};}
+    explicit NumberExprAST(Token token) : token(token) {type = token.type;}
 };
 
-class StringExprAST : ExprAST{
-    std::string val;
+class StringExprAST : public ExprAST{
+    Token token;
 public:
-    StringExprAST(std::string val) : val(val) {token = {TokenType::STRING_LITERAL};}
+    explicit StringExprAST(Token token) : token(token) {type = token.type;}
 };
 
-class VariableExprAST : ExprAST{
+class VariableExprAST : public ExprAST{
     std::string name;
     TokenType dataType;
 public:
-    VariableExprAST(std::string name, TokenType dataType) : name(std::move(name)), dataType(dataType) {token = {dataType};}
+    VariableExprAST(std::string name, TokenType dataType) : name(std::move(name)), dataType(dataType){}
 };
 
-class BinaryExprAST : ExprAST{
-    char op;
+class BinaryExprAST : public ExprAST{
+    std::string op;
     std::unique_ptr<ExprAST> lhs, rhs;
 public:
-    BinaryExprAST(char op, std::unique_ptr<ExprAST> lhs, std::unique_ptr<ExprAST> rhs) :
-    op(op), lhs(std::move(lhs)), rhs(std::move(rhs)) {token = {TokenType::BIN_OP};}
+    BinaryExprAST(std::string op, std::unique_ptr<ExprAST> lhs, std::unique_ptr<ExprAST> rhs): op(std::move(op)), lhs(std::move(lhs)), rhs(std::move(rhs)){}
 };
 
-class TypeExprAST : ExprAST{
-    TokenType dataType;
-    std::string name;
-public:
-    TypeExprAST(TokenType dataType, std::string name) :
-    dataType(dataType), name(std::move(name)) {token = {dataType, this->name};}
-};
 
-class CallExprAST : ExprAST{
+class CallExprAST : public ExprAST{
     std::string callee;
-    std::vector<TypeExprAST> args;
+    std::vector<std::unique_ptr<ExprAST>> args;
 
 public:
-    CallExprAST(std::string callee,std::vector<TypeExprAST> args)
-    : callee(std::move(callee)), args(std::move(args)) {token = {TokenType::CALL, this->callee};}
+    CallExprAST(std::string callee, std::vector<std::unique_ptr<ExprAST>> args) : callee(std::move(callee)), args(std::move(args)) {}
 };
 
-class PrototypeExprAST : ExprAST{
+class PrototypeExprAST : public ExprAST{
     std::string name;
-    std::vector<TypeExprAST> args;
+    TokenType returnType;
+    std::vector<std::unique_ptr<VariableExprAST>> args;
 public:
-    PrototypeExprAST(std::string name,  std::vector<TypeExprAST> args) :
-    name(std::move(name)), args(std::move(args)) {token = {TokenType::PROTOTYPE, this->name};}
+    PrototypeExprAST(std::string name, TokenType returnType, std::vector<std::unique_ptr<VariableExprAST>> args): name(std::move(name)), returnType(returnType), args(std::move(args)){}
 };
 
-class FunctionExprAST : ExprAST{
+class FunctionExprAST : public ExprAST{
     std::unique_ptr<PrototypeExprAST> proto;
     std::unique_ptr<ExprAST> body;
 public:
-    FunctionExprAST(std::unique_ptr<PrototypeExprAST> proto, std::unique_ptr<ExprAST> body) :
-    proto(std::move(proto)), body(std::move(body)) {token = {TokenType::FUNCTION};}
+    FunctionExprAST(std::unique_ptr<PrototypeExprAST> proto, std::variant<std::unique_ptr<ExprAST>, std::unique_ptr<BinaryExprAST>, std::unique_ptr<VariableExprAST>> body){}
+
 };
 
 #endif //NYA_AST_H
