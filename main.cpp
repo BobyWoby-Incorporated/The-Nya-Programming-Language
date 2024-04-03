@@ -50,10 +50,10 @@ int main(int argc, char **argv) {
     buffer << file.rdbuf();
     content = buffer.str();
     std::vector<Token> tokens = lexer.tokenize(content);
-
     for(auto &token : tokens){
         std::cout << toString(token) << std::endl;
     }
+    parser.parse(tokens);
 
 //    std::cout << "Hello, World!" << std::endl;
     return 0;

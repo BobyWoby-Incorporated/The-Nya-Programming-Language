@@ -15,7 +15,7 @@ class Parser {
 public:
     Parser();
     ~Parser() = default;
-    void parse(std::vector<Token> tokens);
+    std::vector<std::unique_ptr<ExprAST>> parse(std::vector<Token> tokens);
 private:
     size_t index = 0;
 
@@ -54,6 +54,10 @@ private:
     std::unique_ptr<PrototypeExprAST> parseExtern();
 
     std::unique_ptr<FunctionExprAST> parseTopLevelExpr();
+
+    std::unique_ptr<ExprAST> parseReturnExpr();
+
+    std::unique_ptr<ScopeExprAST> parseScope();
 };
 
 

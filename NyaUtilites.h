@@ -13,7 +13,7 @@ enum TokenType{
     ENDLINE,
     LEFT_PAREN,
     RIGHT_PAREN,
-    LEFT_BRACE,
+    LEFT_BRACE, // left brace is also a scope cuz im lazy
     RIGHT_BRACE,
     NUMBER_LITERAL,
     STRING_LITERAL,

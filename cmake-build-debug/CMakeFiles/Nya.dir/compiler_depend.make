@@ -435,16 +435,19 @@ CMakeFiles/Nya.dir/Parser.cpp.o: ../Parser.cpp \
   /usr/include/c++/11/bits/stl_vector.h \
   /usr/include/c++/11/bits/stl_bvector.h \
   /usr/include/c++/11/bits/vector.tcc \
-  ../AST.h \
-  /usr/include/c++/11/memory \
-  /usr/include/c++/11/bits/stl_raw_storage_iter.h \
-  /usr/include/c++/11/bits/align.h \
-  /usr/include/c++/11/bit \
-  /usr/include/c++/11/bits/uses_allocator.h \
-  /usr/include/c++/11/bits/unique_ptr.h \
+  /usr/include/c++/11/map \
+  /usr/include/c++/11/bits/stl_tree.h \
+  /usr/include/c++/11/ext/aligned_buffer.h \
+  /usr/include/c++/11/bits/node_handle.h \
+  /usr/include/c++/11/bits/stl_map.h \
   /usr/include/c++/11/tuple \
   /usr/include/c++/11/array \
+  /usr/include/c++/11/bits/uses_allocator.h \
   /usr/include/c++/11/bits/invoke.h \
+  /usr/include/c++/11/bits/stl_multimap.h \
+  /usr/include/c++/11/bits/erase_if.h \
+  ../AST.h \
+  /usr/include/c++/11/iostream \
   /usr/include/c++/11/ostream \
   /usr/include/c++/11/ios \
   /usr/include/c++/11/bits/ios_base.h \
@@ -466,11 +469,17 @@ CMakeFiles/Nya.dir/Parser.cpp.o: ../Parser.cpp \
   /usr/include/c++/11/bits/locale_facets.tcc \
   /usr/include/c++/11/bits/basic_ios.tcc \
   /usr/include/c++/11/bits/ostream.tcc \
+  /usr/include/c++/11/istream \
+  /usr/include/c++/11/bits/istream.tcc \
+  /usr/include/c++/11/memory \
+  /usr/include/c++/11/bits/stl_raw_storage_iter.h \
+  /usr/include/c++/11/bits/align.h \
+  /usr/include/c++/11/bit \
+  /usr/include/c++/11/bits/unique_ptr.h \
   /usr/include/c++/11/bits/shared_ptr.h \
   /usr/include/c++/11/bits/shared_ptr_base.h \
   /usr/include/c++/11/bits/allocated_ptr.h \
   /usr/include/c++/11/bits/refwrap.h \
-  /usr/include/c++/11/ext/aligned_buffer.h \
   /usr/include/c++/11/ext/concurrence.h \
   /usr/include/c++/11/bits/shared_ptr_atomic.h \
   /usr/include/c++/11/bits/atomic_base.h \
@@ -507,7 +516,164 @@ CMakeFiles/Nya.dir/Parser.cpp.o: ../Parser.cpp \
   /usr/include/c++/11/bits/stream_iterator.h \
   /usr/include/c++/11/bits/uses_allocator_args.h \
   /usr/include/c++/11/pstl/glue_memory_defs.h \
-  /usr/include/c++/11/pstl/execution_defs.h
+  /usr/include/c++/11/pstl/execution_defs.h \
+  /usr/include/c++/11/variant \
+  /usr/include/c++/11/bits/parse_numbers.h \
+  /usr/local/include/llvm/ADT/APFloat.h \
+  /usr/local/include/llvm/ADT/APInt.h \
+  /usr/local/include/llvm/Support/Compiler.h \
+  /usr/local/include/llvm/Config/llvm-config.h \
+  /usr/local/include/llvm/Support/MathExtras.h \
+  /usr/local/include/llvm/ADT/bit.h \
+  /usr/include/c++/11/limits \
+  /usr/include/c++/11/cassert \
+  /usr/include/assert.h \
+  /usr/include/c++/11/cstring \
+  /usr/include/string.h \
+  /usr/include/strings.h \
+  /usr/local/include/llvm/ADT/ArrayRef.h \
+  /usr/local/include/llvm/ADT/Hashing.h \
+  /usr/local/include/llvm/Support/DataTypes.h \
+  /usr/local/include/llvm-c/DataTypes.h \
+  /usr/include/inttypes.h \
+  /usr/local/include/llvm/Support/ErrorHandling.h \
+  /usr/local/include/llvm/Support/SwapByteOrder.h \
+  /usr/local/include/llvm/ADT/STLForwardCompat.h \
+  /usr/local/include/llvm/Support/type_traits.h \
+  /usr/include/c++/11/algorithm \
+  /usr/include/c++/11/bits/ranges_algo.h \
+  /usr/include/c++/11/bits/ranges_util.h \
+  /usr/include/c++/11/pstl/glue_algorithm_defs.h \
+  /usr/include/c++/11/functional \
+  /usr/include/c++/11/bits/std_function.h \
+  /usr/include/c++/11/unordered_map \
+  /usr/include/c++/11/bits/hashtable.h \
+  /usr/include/c++/11/bits/hashtable_policy.h \
+  /usr/include/c++/11/bits/unordered_map.h \
+  /usr/local/include/llvm/ADT/SmallVector.h \
+  /usr/include/c++/11/cstddef \
+  /usr/local/include/llvm/ADT/STLExtras.h \
+  /usr/local/include/llvm/ADT/ADL.h \
+  /usr/local/include/llvm/ADT/STLFunctionalExtras.h \
+  /usr/local/include/llvm/ADT/iterator.h \
+  /usr/local/include/llvm/ADT/iterator_range.h \
+  /usr/local/include/llvm/Config/abi-breaking.h \
+  /usr/local/include/llvm/ADT/FloatingPointMode.h \
+  /usr/local/include/llvm/ADT/BitmaskEnum.h \
+  /usr/local/include/llvm/ADT/StringSwitch.h \
+  /usr/local/include/llvm/ADT/StringRef.h \
+  /usr/local/include/llvm/ADT/DenseMapInfo.h \
+  /usr/local/include/llvm/Support/raw_ostream.h \
+  /usr/local/include/llvm/IR/BasicBlock.h \
+  /usr/local/include/llvm-c/Types.h \
+  /usr/local/include/llvm-c/ExternC.h \
+  /usr/local/include/llvm/ADT/DenseMap.h \
+  /usr/local/include/llvm/ADT/EpochTracker.h \
+  /usr/local/include/llvm/Support/AlignOf.h \
+  /usr/local/include/llvm/Support/MemAlloc.h \
+  /usr/local/include/llvm/Support/ReverseIteration.h \
+  /usr/local/include/llvm/Support/PointerLikeTypeTraits.h \
+  /usr/local/include/llvm/ADT/Twine.h \
+  /usr/local/include/llvm/ADT/ilist.h \
+  /usr/local/include/llvm/ADT/simple_ilist.h \
+  /usr/local/include/llvm/ADT/ilist_base.h \
+  /usr/local/include/llvm/ADT/ilist_node_base.h \
+  /usr/local/include/llvm/ADT/PointerIntPair.h \
+  /usr/local/include/llvm/ADT/ilist_iterator.h \
+  /usr/local/include/llvm/ADT/ilist_node.h \
+  /usr/local/include/llvm/ADT/ilist_node_options.h \
+  /usr/local/include/llvm/IR/DebugProgramInstruction.h \
+  /usr/local/include/llvm/IR/DebugLoc.h \
+  /usr/local/include/llvm/IR/TrackingMDRef.h \
+  /usr/local/include/llvm/IR/Metadata.h \
+  /usr/local/include/llvm/ADT/PointerUnion.h \
+  /usr/local/include/llvm/Support/Casting.h \
+  /usr/local/include/llvm/IR/Constant.h \
+  /usr/local/include/llvm/IR/User.h \
+  /usr/local/include/llvm/IR/Use.h \
+  /usr/local/include/llvm/Support/CBindingWrapping.h \
+  /usr/local/include/llvm/IR/Value.h \
+  /usr/local/include/llvm/Support/Alignment.h \
+  /usr/local/include/llvm/IR/Value.def \
+  /usr/local/include/llvm/IR/LLVMContext.h \
+  /usr/local/include/llvm/IR/DiagnosticHandler.h \
+  /usr/local/include/llvm/IR/FixedMetadataKinds.def \
+  /usr/local/include/llvm/IR/Metadata.def \
+  /usr/local/include/llvm/IR/Instruction.h \
+  /usr/local/include/llvm/ADT/Bitfields.h \
+  /usr/local/include/llvm/IR/SymbolTableListTraits.h \
+  /usr/local/include/llvm/Support/AtomicOrdering.h \
+  /usr/local/include/llvm/IR/Instruction.def \
+  /usr/local/include/llvm/IR/Constants.h \
+  /usr/local/include/llvm/IR/ConstantRange.h \
+  /usr/local/include/llvm/IR/InstrTypes.h \
+  /usr/local/include/llvm/ADT/Sequence.h \
+  /usr/local/include/llvm/ADT/StringMap.h \
+  /usr/local/include/llvm/ADT/StringMapEntry.h \
+  /usr/local/include/llvm/Support/AllocatorBase.h \
+  /usr/local/include/llvm/Support/DJB.h \
+  /usr/local/include/llvm/IR/Attributes.h \
+  /usr/local/include/llvm/Support/CodeGen.h \
+  /usr/local/include/llvm/Support/ModRef.h \
+  /usr/local/include/llvm/IR/Attributes.inc \
+  /usr/local/include/llvm/IR/CallingConv.h \
+  /usr/local/include/llvm/IR/DerivedTypes.h \
+  /usr/local/include/llvm/IR/Type.h \
+  /usr/local/include/llvm/Support/TypeSize.h \
+  /usr/local/include/llvm/IR/Function.h \
+  /usr/local/include/llvm/ADT/DenseSet.h \
+  /usr/local/include/llvm/IR/Argument.h \
+  /usr/local/include/llvm/IR/GlobalObject.h \
+  /usr/local/include/llvm/IR/GlobalValue.h \
+  /usr/local/include/llvm/Support/MD5.h \
+  /usr/local/include/llvm/Support/Endian.h \
+  /usr/local/include/llvm/IR/OperandTraits.h \
+  /usr/local/include/llvm/IR/Intrinsics.h \
+  /usr/local/include/llvm/IR/IntrinsicEnums.inc \
+  /usr/local/include/llvm/IR/IRBuilder.h \
+  /usr/local/include/llvm/IR/ConstantFolder.h \
+  /usr/local/include/llvm/IR/ConstantFold.h \
+  /usr/local/include/llvm/IR/IRBuilderFolder.h \
+  /usr/local/include/llvm/IR/Operator.h \
+  /usr/local/include/llvm/ADT/MapVector.h \
+  /usr/local/include/llvm/IR/FMF.h \
+  /usr/local/include/llvm/IR/DataLayout.h \
+  /usr/local/include/llvm/Support/TrailingObjects.h \
+  /usr/local/include/llvm/IR/FPEnv.h \
+  /usr/local/include/llvm/IR/GlobalVariable.h \
+  /usr/local/include/llvm/IR/Instructions.h \
+  /usr/local/include/llvm/IR/CFG.h \
+  /usr/local/include/llvm/ADT/GraphTraits.h \
+  /usr/local/include/llvm/IR/Module.h \
+  /usr/local/include/llvm/IR/Comdat.h \
+  /usr/local/include/llvm/ADT/SmallPtrSet.h \
+  /usr/local/include/llvm/IR/GlobalAlias.h \
+  /usr/local/include/llvm/IR/GlobalIFunc.h \
+  /usr/local/include/llvm/IR/ProfileSummary.h \
+  /usr/local/include/llvm/IR/ValueHandle.h \
+  /usr/local/include/llvm/IR/Verifier.h \
+  /usr/local/include/llvm/IR/PassManager.h \
+  /usr/local/include/llvm/ADT/TinyPtrVector.h \
+  /usr/local/include/llvm/IR/Analysis.h \
+  /usr/local/include/llvm/IR/PassInstrumentation.h \
+  /usr/local/include/llvm/ADT/Any.h \
+  /usr/local/include/llvm/ADT/FunctionExtras.h \
+  /usr/local/include/llvm/IR/PassManagerInternal.h \
+  /usr/local/include/llvm/Support/CommandLine.h \
+  /usr/local/include/llvm/Support/ManagedStatic.h \
+  /usr/include/c++/11/atomic \
+  /usr/local/include/llvm/Support/StringSaver.h \
+  /usr/local/include/llvm/Support/Allocator.h \
+  /usr/local/include/llvm/Support/TimeProfiler.h \
+  /usr/local/include/llvm/Support/Error.h \
+  /usr/local/include/llvm-c/Error.h \
+  /usr/local/include/llvm/Support/Debug.h \
+  /usr/local/include/llvm/Support/ErrorOr.h \
+  /usr/local/include/llvm/Support/Format.h \
+  /usr/local/include/llvm/Support/TypeName.h \
+  /usr/include/c++/11/list \
+  /usr/include/c++/11/bits/stl_list.h \
+  /usr/include/c++/11/bits/list.tcc
 
 CMakeFiles/Nya.dir/main.cpp.o: ../main.cpp \
   /usr/include/stdc-predef.h \
@@ -720,21 +886,27 @@ CMakeFiles/Nya.dir/main.cpp.o: ../main.cpp \
   /usr/include/c++/11/bits/vector.tcc \
   ../NyaUtilites.h \
   ../Parser.h \
+  /usr/include/c++/11/map \
+  /usr/include/c++/11/bits/stl_tree.h \
+  /usr/include/c++/11/ext/aligned_buffer.h \
+  /usr/include/c++/11/bits/node_handle.h \
+  /usr/include/c++/11/bits/stl_map.h \
+  /usr/include/c++/11/tuple \
+  /usr/include/c++/11/array \
+  /usr/include/c++/11/bits/uses_allocator.h \
+  /usr/include/c++/11/bits/invoke.h \
+  /usr/include/c++/11/bits/stl_multimap.h \
+  /usr/include/c++/11/bits/erase_if.h \
   ../AST.h \
   /usr/include/c++/11/memory \
   /usr/include/c++/11/bits/stl_raw_storage_iter.h \
   /usr/include/c++/11/bits/align.h \
   /usr/include/c++/11/bit \
-  /usr/include/c++/11/bits/uses_allocator.h \
   /usr/include/c++/11/bits/unique_ptr.h \
-  /usr/include/c++/11/tuple \
-  /usr/include/c++/11/array \
-  /usr/include/c++/11/bits/invoke.h \
   /usr/include/c++/11/bits/shared_ptr.h \
   /usr/include/c++/11/bits/shared_ptr_base.h \
   /usr/include/c++/11/bits/allocated_ptr.h \
   /usr/include/c++/11/bits/refwrap.h \
-  /usr/include/c++/11/ext/aligned_buffer.h \
   /usr/include/c++/11/ext/concurrence.h \
   /usr/include/c++/11/bits/shared_ptr_atomic.h \
   /usr/include/c++/11/bits/atomic_base.h \
@@ -771,22 +943,393 @@ CMakeFiles/Nya.dir/main.cpp.o: ../main.cpp \
   /usr/include/c++/11/bits/stream_iterator.h \
   /usr/include/c++/11/bits/uses_allocator_args.h \
   /usr/include/c++/11/pstl/glue_memory_defs.h \
-  /usr/include/c++/11/pstl/execution_defs.h
+  /usr/include/c++/11/pstl/execution_defs.h \
+  /usr/include/c++/11/variant \
+  /usr/include/c++/11/bits/parse_numbers.h \
+  /usr/local/include/llvm/ADT/APFloat.h \
+  /usr/local/include/llvm/ADT/APInt.h \
+  /usr/local/include/llvm/Support/Compiler.h \
+  /usr/local/include/llvm/Config/llvm-config.h \
+  /usr/local/include/llvm/Support/MathExtras.h \
+  /usr/local/include/llvm/ADT/bit.h \
+  /usr/include/c++/11/limits \
+  /usr/include/c++/11/cassert \
+  /usr/include/assert.h \
+  /usr/include/c++/11/cstring \
+  /usr/include/string.h \
+  /usr/include/strings.h \
+  /usr/local/include/llvm/ADT/ArrayRef.h \
+  /usr/local/include/llvm/ADT/Hashing.h \
+  /usr/local/include/llvm/Support/DataTypes.h \
+  /usr/local/include/llvm-c/DataTypes.h \
+  /usr/include/inttypes.h \
+  /usr/local/include/llvm/Support/ErrorHandling.h \
+  /usr/local/include/llvm/Support/SwapByteOrder.h \
+  /usr/local/include/llvm/ADT/STLForwardCompat.h \
+  /usr/local/include/llvm/Support/type_traits.h \
+  /usr/include/c++/11/algorithm \
+  /usr/include/c++/11/bits/ranges_algo.h \
+  /usr/include/c++/11/bits/ranges_util.h \
+  /usr/include/c++/11/pstl/glue_algorithm_defs.h \
+  /usr/include/c++/11/functional \
+  /usr/include/c++/11/bits/std_function.h \
+  /usr/include/c++/11/unordered_map \
+  /usr/include/c++/11/bits/hashtable.h \
+  /usr/include/c++/11/bits/hashtable_policy.h \
+  /usr/include/c++/11/bits/unordered_map.h \
+  /usr/local/include/llvm/ADT/SmallVector.h \
+  /usr/include/c++/11/cstddef \
+  /usr/local/include/llvm/ADT/STLExtras.h \
+  /usr/local/include/llvm/ADT/ADL.h \
+  /usr/local/include/llvm/ADT/STLFunctionalExtras.h \
+  /usr/local/include/llvm/ADT/iterator.h \
+  /usr/local/include/llvm/ADT/iterator_range.h \
+  /usr/local/include/llvm/Config/abi-breaking.h \
+  /usr/local/include/llvm/ADT/FloatingPointMode.h \
+  /usr/local/include/llvm/ADT/BitmaskEnum.h \
+  /usr/local/include/llvm/ADT/StringSwitch.h \
+  /usr/local/include/llvm/ADT/StringRef.h \
+  /usr/local/include/llvm/ADT/DenseMapInfo.h \
+  /usr/local/include/llvm/Support/raw_ostream.h \
+  /usr/local/include/llvm/IR/BasicBlock.h \
+  /usr/local/include/llvm-c/Types.h \
+  /usr/local/include/llvm-c/ExternC.h \
+  /usr/local/include/llvm/ADT/DenseMap.h \
+  /usr/local/include/llvm/ADT/EpochTracker.h \
+  /usr/local/include/llvm/Support/AlignOf.h \
+  /usr/local/include/llvm/Support/MemAlloc.h \
+  /usr/local/include/llvm/Support/ReverseIteration.h \
+  /usr/local/include/llvm/Support/PointerLikeTypeTraits.h \
+  /usr/local/include/llvm/ADT/Twine.h \
+  /usr/local/include/llvm/ADT/ilist.h \
+  /usr/local/include/llvm/ADT/simple_ilist.h \
+  /usr/local/include/llvm/ADT/ilist_base.h \
+  /usr/local/include/llvm/ADT/ilist_node_base.h \
+  /usr/local/include/llvm/ADT/PointerIntPair.h \
+  /usr/local/include/llvm/ADT/ilist_iterator.h \
+  /usr/local/include/llvm/ADT/ilist_node.h \
+  /usr/local/include/llvm/ADT/ilist_node_options.h \
+  /usr/local/include/llvm/IR/DebugProgramInstruction.h \
+  /usr/local/include/llvm/IR/DebugLoc.h \
+  /usr/local/include/llvm/IR/TrackingMDRef.h \
+  /usr/local/include/llvm/IR/Metadata.h \
+  /usr/local/include/llvm/ADT/PointerUnion.h \
+  /usr/local/include/llvm/Support/Casting.h \
+  /usr/local/include/llvm/IR/Constant.h \
+  /usr/local/include/llvm/IR/User.h \
+  /usr/local/include/llvm/IR/Use.h \
+  /usr/local/include/llvm/Support/CBindingWrapping.h \
+  /usr/local/include/llvm/IR/Value.h \
+  /usr/local/include/llvm/Support/Alignment.h \
+  /usr/local/include/llvm/IR/Value.def \
+  /usr/local/include/llvm/IR/LLVMContext.h \
+  /usr/local/include/llvm/IR/DiagnosticHandler.h \
+  /usr/local/include/llvm/IR/FixedMetadataKinds.def \
+  /usr/local/include/llvm/IR/Metadata.def \
+  /usr/local/include/llvm/IR/Instruction.h \
+  /usr/local/include/llvm/ADT/Bitfields.h \
+  /usr/local/include/llvm/IR/SymbolTableListTraits.h \
+  /usr/local/include/llvm/Support/AtomicOrdering.h \
+  /usr/local/include/llvm/IR/Instruction.def \
+  /usr/local/include/llvm/IR/Constants.h \
+  /usr/local/include/llvm/IR/ConstantRange.h \
+  /usr/local/include/llvm/IR/InstrTypes.h \
+  /usr/local/include/llvm/ADT/Sequence.h \
+  /usr/local/include/llvm/ADT/StringMap.h \
+  /usr/local/include/llvm/ADT/StringMapEntry.h \
+  /usr/local/include/llvm/Support/AllocatorBase.h \
+  /usr/local/include/llvm/Support/DJB.h \
+  /usr/local/include/llvm/IR/Attributes.h \
+  /usr/local/include/llvm/Support/CodeGen.h \
+  /usr/local/include/llvm/Support/ModRef.h \
+  /usr/local/include/llvm/IR/Attributes.inc \
+  /usr/local/include/llvm/IR/CallingConv.h \
+  /usr/local/include/llvm/IR/DerivedTypes.h \
+  /usr/local/include/llvm/IR/Type.h \
+  /usr/local/include/llvm/Support/TypeSize.h \
+  /usr/local/include/llvm/IR/Function.h \
+  /usr/local/include/llvm/ADT/DenseSet.h \
+  /usr/local/include/llvm/IR/Argument.h \
+  /usr/local/include/llvm/IR/GlobalObject.h \
+  /usr/local/include/llvm/IR/GlobalValue.h \
+  /usr/local/include/llvm/Support/MD5.h \
+  /usr/local/include/llvm/Support/Endian.h \
+  /usr/local/include/llvm/IR/OperandTraits.h \
+  /usr/local/include/llvm/IR/Intrinsics.h \
+  /usr/local/include/llvm/IR/IntrinsicEnums.inc \
+  /usr/local/include/llvm/IR/IRBuilder.h \
+  /usr/local/include/llvm/IR/ConstantFolder.h \
+  /usr/local/include/llvm/IR/ConstantFold.h \
+  /usr/local/include/llvm/IR/IRBuilderFolder.h \
+  /usr/local/include/llvm/IR/Operator.h \
+  /usr/local/include/llvm/ADT/MapVector.h \
+  /usr/local/include/llvm/IR/FMF.h \
+  /usr/local/include/llvm/IR/DataLayout.h \
+  /usr/local/include/llvm/Support/TrailingObjects.h \
+  /usr/local/include/llvm/IR/FPEnv.h \
+  /usr/local/include/llvm/IR/GlobalVariable.h \
+  /usr/local/include/llvm/IR/Instructions.h \
+  /usr/local/include/llvm/IR/CFG.h \
+  /usr/local/include/llvm/ADT/GraphTraits.h \
+  /usr/local/include/llvm/IR/Module.h \
+  /usr/local/include/llvm/IR/Comdat.h \
+  /usr/local/include/llvm/ADT/SmallPtrSet.h \
+  /usr/local/include/llvm/IR/GlobalAlias.h \
+  /usr/local/include/llvm/IR/GlobalIFunc.h \
+  /usr/local/include/llvm/IR/ProfileSummary.h \
+  /usr/local/include/llvm/IR/ValueHandle.h \
+  /usr/local/include/llvm/IR/Verifier.h \
+  /usr/local/include/llvm/IR/PassManager.h \
+  /usr/local/include/llvm/ADT/TinyPtrVector.h \
+  /usr/local/include/llvm/IR/Analysis.h \
+  /usr/local/include/llvm/IR/PassInstrumentation.h \
+  /usr/local/include/llvm/ADT/Any.h \
+  /usr/local/include/llvm/ADT/FunctionExtras.h \
+  /usr/local/include/llvm/IR/PassManagerInternal.h \
+  /usr/local/include/llvm/Support/CommandLine.h \
+  /usr/local/include/llvm/Support/ManagedStatic.h \
+  /usr/include/c++/11/atomic \
+  /usr/local/include/llvm/Support/StringSaver.h \
+  /usr/local/include/llvm/Support/Allocator.h \
+  /usr/local/include/llvm/Support/TimeProfiler.h \
+  /usr/local/include/llvm/Support/Error.h \
+  /usr/local/include/llvm-c/Error.h \
+  /usr/local/include/llvm/Support/Debug.h \
+  /usr/local/include/llvm/Support/ErrorOr.h \
+  /usr/local/include/llvm/Support/Format.h \
+  /usr/local/include/llvm/Support/TypeName.h \
+  /usr/include/c++/11/list \
+  /usr/include/c++/11/bits/stl_list.h \
+  /usr/include/c++/11/bits/list.tcc
 
-
-/usr/include/c++/11/bits/fstream.tcc:
 
 /usr/include/x86_64-linux-gnu/c++/11/bits/c++io.h:
 
 /usr/include/x86_64-linux-gnu/c++/11/bits/basic_file.h:
 
+/usr/include/c++/11/bits/stl_list.h:
+
+/usr/local/include/llvm/Support/TypeName.h:
+
+/usr/local/include/llvm/Support/ErrorOr.h:
+
+/usr/local/include/llvm-c/Error.h:
+
+/usr/include/c++/11/atomic:
+
+/usr/local/include/llvm/Support/Error.h:
+
+/usr/local/include/llvm/Support/ManagedStatic.h:
+
+/usr/local/include/llvm/ADT/Any.h:
+
+/usr/local/include/llvm/IR/PassInstrumentation.h:
+
+/usr/local/include/llvm/ADT/TinyPtrVector.h:
+
+/usr/local/include/llvm/IR/Verifier.h:
+
+/usr/local/include/llvm/IR/ValueHandle.h:
+
+/usr/local/include/llvm/IR/ProfileSummary.h:
+
+/usr/local/include/llvm/IR/GlobalAlias.h:
+
+/usr/local/include/llvm/IR/Module.h:
+
+/usr/local/include/llvm/ADT/GraphTraits.h:
+
+/usr/local/include/llvm/ADT/SmallPtrSet.h:
+
+/usr/local/include/llvm/IR/CFG.h:
+
+/usr/local/include/llvm/IR/GlobalVariable.h:
+
+/usr/local/include/llvm/IR/DataLayout.h:
+
+/usr/local/include/llvm/IR/FMF.h:
+
+/usr/local/include/llvm/ADT/MapVector.h:
+
+/usr/local/include/llvm/IR/Operator.h:
+
+/usr/local/include/llvm/IR/IRBuilderFolder.h:
+
+/usr/local/include/llvm/IR/Intrinsics.h:
+
+/usr/local/include/llvm/Support/MD5.h:
+
+/usr/local/include/llvm/IR/GlobalValue.h:
+
+/usr/local/include/llvm/IR/GlobalObject.h:
+
+/usr/local/include/llvm/IR/Type.h:
+
 /usr/include/c++/11/fstream:
+
+/usr/local/include/llvm/IR/DerivedTypes.h:
+
+/usr/local/include/llvm/IR/CallingConv.h:
+
+/usr/local/include/llvm/Support/ModRef.h:
+
+/usr/local/include/llvm/Support/CodeGen.h:
+
+/usr/local/include/llvm/IR/Attributes.h:
+
+/usr/local/include/llvm/Support/DJB.h:
+
+/usr/local/include/llvm/Support/AllocatorBase.h:
+
+/usr/local/include/llvm/ADT/StringMapEntry.h:
+
+/usr/local/include/llvm/IR/Argument.h:
+
+/usr/local/include/llvm/ADT/StringMap.h:
+
+/usr/local/include/llvm/IR/InstrTypes.h:
+
+/usr/local/include/llvm/IR/ConstantRange.h:
+
+/usr/local/include/llvm/IR/Constants.h:
+
+/usr/local/include/llvm/Support/Format.h:
+
+/usr/local/include/llvm/Support/AtomicOrdering.h:
+
+/usr/local/include/llvm/IR/SymbolTableListTraits.h:
+
+/usr/local/include/llvm/ADT/Bitfields.h:
+
+/usr/local/include/llvm/IR/FixedMetadataKinds.def:
+
+/usr/local/include/llvm/IR/LLVMContext.h:
+
+/usr/local/include/llvm/Support/Alignment.h:
+
+/usr/local/include/llvm/IR/User.h:
+
+/usr/include/c++/11/bits/fstream.tcc:
+
+/usr/local/include/llvm/Support/Casting.h:
+
+/usr/local/include/llvm/IR/Metadata.h:
+
+/usr/local/include/llvm/IR/DebugLoc.h:
+
+/usr/local/include/llvm/IR/DebugProgramInstruction.h:
+
+/usr/local/include/llvm/Support/CommandLine.h:
+
+/usr/local/include/llvm/ADT/ilist_node.h:
+
+/usr/local/include/llvm/ADT/PointerIntPair.h:
+
+/usr/local/include/llvm/ADT/ilist_node_base.h:
+
+/usr/local/include/llvm/ADT/simple_ilist.h:
+
+/usr/local/include/llvm/Support/PointerLikeTypeTraits.h:
+
+/usr/local/include/llvm/Support/ReverseIteration.h:
+
+/usr/local/include/llvm/Support/MemAlloc.h:
+
+/usr/local/include/llvm/ADT/EpochTracker.h:
+
+/usr/local/include/llvm/ADT/Twine.h:
+
+/usr/local/include/llvm-c/Types.h:
+
+/usr/local/include/llvm/ADT/StringRef.h:
+
+/usr/local/include/llvm/ADT/FloatingPointMode.h:
+
+/usr/local/include/llvm/Config/abi-breaking.h:
+
+/usr/local/include/llvm/ADT/iterator.h:
+
+/usr/local/include/llvm/ADT/STLFunctionalExtras.h:
+
+/usr/local/include/llvm/ADT/ADL.h:
+
+/usr/local/include/llvm/ADT/STLExtras.h:
+
+/usr/local/include/llvm/ADT/SmallVector.h:
+
+/usr/include/c++/11/bits/unordered_map.h:
+
+/usr/include/c++/11/bits/hashtable_policy.h:
+
+/usr/include/c++/11/bits/hashtable.h:
+
+/usr/include/c++/11/unordered_map:
+
+/usr/include/c++/11/bits/ranges_util.h:
+
+/usr/include/c++/11/algorithm:
+
+/usr/local/include/llvm/Support/type_traits.h:
+
+/usr/local/include/llvm/IR/DiagnosticHandler.h:
+
+/usr/local/include/llvm/ADT/STLForwardCompat.h:
+
+/usr/local/include/llvm/Support/SwapByteOrder.h:
+
+/usr/local/include/llvm/ADT/BitmaskEnum.h:
+
+/usr/include/inttypes.h:
+
+/usr/local/include/llvm/IR/Comdat.h:
+
+/usr/local/include/llvm-c/DataTypes.h:
+
+/usr/include/c++/11/bits/list.tcc:
+
+/usr/local/include/llvm/Support/DataTypes.h:
+
+/usr/include/strings.h:
+
+/usr/local/include/llvm/ADT/FunctionExtras.h:
+
+/usr/include/c++/11/cassert:
+
+/usr/include/c++/11/limits:
+
+/usr/local/include/llvm/ADT/bit.h:
+
+/usr/local/include/llvm/Support/MathExtras.h:
+
+/usr/local/include/llvm/Support/Compiler.h:
+
+/usr/local/include/llvm/IR/IRBuilder.h:
+
+/usr/local/include/llvm/ADT/APInt.h:
+
+/usr/local/include/llvm/IR/Analysis.h:
+
+/usr/include/c++/11/bits/parse_numbers.h:
+
+/usr/include/c++/11/variant:
+
+../AST.h:
 
 ../main.cpp:
 
+/usr/include/c++/11/bits/stl_multimap.h:
+
+/usr/local/include/llvm/ADT/iterator_range.h:
+
+/usr/include/c++/11/bits/stl_map.h:
+
 /usr/include/c++/11/backward/binders.h:
 
+/usr/include/c++/11/bits/node_handle.h:
+
 /usr/include/c++/11/iostream:
+
+/usr/local/include/llvm/ADT/ArrayRef.h:
 
 /usr/include/x86_64-linux-gnu/sys/syscall.h:
 
@@ -812,6 +1355,8 @@ CMakeFiles/Nya.dir/main.cpp.o: ../main.cpp \
 
 /usr/include/c++/11/bits/allocated_ptr.h:
 
+/usr/local/include/llvm/ADT/ilist_base.h:
+
 /usr/include/x86_64-linux-gnu/bits/types/timer_t.h:
 
 /usr/include/x86_64-linux-gnu/bits/select.h:
@@ -824,6 +1369,8 @@ CMakeFiles/Nya.dir/main.cpp.o: ../main.cpp \
 
 /usr/include/x86_64-linux-gnu/c++/11/bits/gthr-default.h:
 
+/usr/local/include/llvm/Support/Allocator.h:
+
 /usr/include/c++/11/ext/concurrence.h:
 
 /usr/include/c++/11/bits/ios_base.h:
@@ -833,6 +1380,12 @@ CMakeFiles/Nya.dir/main.cpp.o: ../main.cpp \
 /usr/include/x86_64-linux-gnu/bits/endian.h:
 
 /usr/include/x86_64-linux-gnu/gnu/stubs.h:
+
+/usr/local/include/llvm/Support/TypeSize.h:
+
+/usr/local/include/llvm/IR/Metadata.def:
+
+/usr/local/include/llvm/ADT/ilist.h:
 
 /usr/include/x86_64-linux-gnu/bits/locale.h:
 
@@ -848,8 +1401,6 @@ CMakeFiles/Nya.dir/main.cpp.o: ../main.cpp \
 
 /usr/include/c++/11/bits/stl_algo.h:
 
-../AST.h:
-
 /usr/include/x86_64-linux-gnu/bits/atomic_wide_counter.h:
 
 /usr/include/c++/11/sstream:
@@ -860,11 +1411,15 @@ CMakeFiles/Nya.dir/main.cpp.o: ../main.cpp \
 
 /usr/include/x86_64-linux-gnu/bits/sched.h:
 
+/usr/local/include/llvm/Support/StringSaver.h:
+
 /usr/include/x86_64-linux-gnu/bits/typesizes.h:
 
 /usr/include/c++/11/bits/predefined_ops.h:
 
 /usr/include/c++/11/bits/atomic_wait.h:
+
+/usr/include/c++/11/bits/ranges_algo.h:
 
 /usr/include/x86_64-linux-gnu/bits/struct_mutex.h:
 
@@ -876,6 +1431,10 @@ CMakeFiles/Nya.dir/main.cpp.o: ../main.cpp \
 
 /usr/include/c++/11/bits/stream_iterator.h:
 
+/usr/local/include/llvm/Support/TimeProfiler.h:
+
+/usr/local/include/llvm/ADT/Hashing.h:
+
 /usr/include/c++/11/bits/cpp_type_traits.h:
 
 /usr/include/c++/11/bits/stl_iterator_base_funcs.h:
@@ -883,6 +1442,8 @@ CMakeFiles/Nya.dir/main.cpp.o: ../main.cpp \
 /usr/include/c++/11/bits/ranges_cmp.h:
 
 /usr/include/x86_64-linux-gnu/bits/floatn-common.h:
+
+/usr/local/include/llvm/Support/Debug.h:
 
 /usr/include/x86_64-linux-gnu/bits/types/wint_t.h:
 
@@ -893,6 +1454,8 @@ CMakeFiles/Nya.dir/main.cpp.o: ../main.cpp \
 /usr/include/x86_64-linux-gnu/bits/types/time_t.h:
 
 /usr/include/c++/11/tuple:
+
+/usr/local/include/llvm/Support/TrailingObjects.h:
 
 /usr/include/x86_64-linux-gnu/bits/types/struct_itimerspec.h:
 
@@ -906,6 +1469,8 @@ CMakeFiles/Nya.dir/main.cpp.o: ../main.cpp \
 
 /usr/include/x86_64-linux-gnu/c++/11/bits/cpu_defines.h:
 
+/usr/local/include/llvm/IR/OperandTraits.h:
+
 /usr/include/c++/11/exception:
 
 /usr/include/c++/11/bits/invoke.h:
@@ -918,7 +1483,13 @@ CMakeFiles/Nya.dir/main.cpp.o: ../main.cpp \
 
 /usr/include/x86_64-linux-gnu/bits/waitstatus.h:
 
+/usr/include/c++/11/functional:
+
 /usr/include/linux/errno.h:
+
+/usr/local/include/llvm/IR/ConstantFold.h:
+
+/usr/local/include/llvm/ADT/StringSwitch.h:
 
 /usr/include/c++/11/bits/stringfwd.h:
 
@@ -928,11 +1499,17 @@ CMakeFiles/Nya.dir/main.cpp.o: ../main.cpp \
 
 /usr/include/x86_64-linux-gnu/bits/wordsize.h:
 
+/usr/local/include/llvm/IR/PassManager.h:
+
 /usr/include/x86_64-linux-gnu/bits/types/locale_t.h:
 
 /usr/include/x86_64-linux-gnu/bits/wctype-wchar.h:
 
+/usr/local/include/llvm/IR/Value.h:
+
 /usr/include/c++/11/bits/allocator.h:
+
+/usr/local/include/llvm/IR/Instructions.h:
 
 /usr/include/c++/11/type_traits:
 
@@ -946,11 +1523,15 @@ CMakeFiles/Nya.dir/main.cpp.o: ../main.cpp \
 
 /usr/include/x86_64-linux-gnu/bits/libc-header-start.h:
 
+/usr/local/include/llvm/ADT/Sequence.h:
+
 /usr/include/c++/11/bits/memoryfwd.h:
 
 /usr/include/c++/11/bits/stl_function.h:
 
 /usr/include/c++/11/compare:
+
+/usr/local/include/llvm/Support/AlignOf.h:
 
 /usr/include/x86_64-linux-gnu/bits/time64.h:
 
@@ -986,7 +1567,11 @@ CMakeFiles/Nya.dir/main.cpp.o: ../main.cpp \
 
 /usr/include/x86_64-linux-gnu/bits/types/struct_timeval.h:
 
+/usr/local/include/llvm/Support/raw_ostream.h:
+
 /usr/include/x86_64-linux-gnu/asm/errno.h:
+
+/usr/local/include/llvm/ADT/ilist_node_options.h:
 
 /usr/include/x86_64-linux-gnu/sys/cdefs.h:
 
@@ -1008,11 +1593,21 @@ CMakeFiles/Nya.dir/main.cpp.o: ../main.cpp \
 
 /usr/include/c++/11/bits/stl_algobase.h:
 
+/usr/local/include/llvm/ADT/PointerUnion.h:
+
+/usr/local/include/llvm/ADT/ilist_iterator.h:
+
 /usr/include/c++/11/bits/nested_exception.h:
+
+/usr/local/include/llvm/IR/Value.def:
 
 /usr/include/x86_64-linux-gnu/bits/types/clock_t.h:
 
+/usr/include/c++/11/cstring:
+
 /usr/include/x86_64-linux-gnu/bits/types/__FILE.h:
+
+/usr/include/c++/11/bits/std_function.h:
 
 /usr/include/c++/11/bits/stl_tempbuf.h:
 
@@ -1032,6 +1627,8 @@ CMakeFiles/Nya.dir/main.cpp.o: ../main.cpp \
 
 /usr/include/x86_64-linux-gnu/bits/posix2_lim.h:
 
+/usr/local/include/llvm/ADT/DenseMap.h:
+
 ../NyaUtilites.h:
 
 /usr/include/c++/11/bits/exception_ptr.h:
@@ -1039,6 +1636,8 @@ CMakeFiles/Nya.dir/main.cpp.o: ../main.cpp \
 /usr/include/c++/11/ext/string_conversions.h:
 
 /usr/include/x86_64-linux-gnu/c++/11/bits/atomic_word.h:
+
+/usr/local/include/llvm/IR/Instruction.h:
 
 /usr/include/x86_64-linux-gnu/bits/environments.h:
 
@@ -1060,6 +1659,8 @@ CMakeFiles/Nya.dir/main.cpp.o: ../main.cpp \
 
 /usr/include/c++/11/bits/hash_bytes.h:
 
+/usr/include/assert.h:
+
 /usr/include/c++/11/numbers:
 
 /usr/include/c++/11/bits/string_view.tcc:
@@ -1072,17 +1673,25 @@ CMakeFiles/Nya.dir/main.cpp.o: ../main.cpp \
 
 /usr/include/x86_64-linux-gnu/bits/types/sigset_t.h:
 
+/usr/local/include/llvm/IR/Instruction.def:
+
 /usr/include/c++/11/streambuf:
 
 /usr/include/x86_64-linux-gnu/c++/11/bits/c++locale.h:
 
 /usr/include/x86_64-linux-gnu/bits/xopen_lim.h:
 
+/usr/local/include/llvm-c/ExternC.h:
+
 /usr/include/c++/11/ext/numeric_traits.h:
 
 /usr/include/c++/11/bits/atomic_base.h:
 
 /usr/include/features.h:
+
+/usr/local/include/llvm/IR/IntrinsicEnums.inc:
+
+/usr/local/include/llvm/Support/Endian.h:
 
 /usr/include/c++/11/bits/iterator_concepts.h:
 
@@ -1093,6 +1702,8 @@ CMakeFiles/Nya.dir/main.cpp.o: ../main.cpp \
 /usr/include/stdlib.h:
 
 /usr/include/x86_64-linux-gnu/bits/waitflags.h:
+
+/usr/include/c++/11/bits/erase_if.h:
 
 /usr/include/c++/11/bits/ptr_traits.h:
 
@@ -1111,6 +1722,10 @@ CMakeFiles/Nya.dir/main.cpp.o: ../main.cpp \
 /usr/include/c++/11/bits/shared_ptr.h:
 
 /usr/include/x86_64-linux-gnu/bits/uintn-identity.h:
+
+/usr/local/include/llvm/IR/GlobalIFunc.h:
+
+/usr/local/include/llvm/Support/CBindingWrapping.h:
 
 /usr/include/x86_64-linux-gnu/bits/stdlib-float.h:
 
@@ -1135,6 +1750,12 @@ CMakeFiles/Nya.dir/main.cpp.o: ../main.cpp \
 /usr/include/c++/11/bits/stl_heap.h:
 
 /usr/include/c++/11/bits/ranges_base.h:
+
+/usr/include/c++/11/map:
+
+/usr/local/include/llvm/ADT/DenseSet.h:
+
+/usr/local/include/llvm/IR/BasicBlock.h:
 
 /usr/include/stdc-predef.h:
 
@@ -1166,6 +1787,8 @@ CMakeFiles/Nya.dir/main.cpp.o: ../main.cpp \
 
 /usr/include/x86_64-linux-gnu/bits/errno.h:
 
+/usr/local/include/llvm/Support/ErrorHandling.h:
+
 /usr/include/sched.h:
 
 /usr/include/wctype.h:
@@ -1176,9 +1799,15 @@ CMakeFiles/Nya.dir/main.cpp.o: ../main.cpp \
 
 /usr/include/asm-generic/errno.h:
 
+/usr/include/c++/11/bits/stl_tree.h:
+
 /usr/include/syscall.h:
 
+/usr/local/include/llvm/IR/Attributes.inc:
+
 /usr/include/x86_64-linux-gnu/bits/types/error_t.h:
+
+/usr/local/include/llvm/IR/ConstantFolder.h:
 
 /usr/include/c++/11/bits/charconv.h:
 
@@ -1188,6 +1817,8 @@ CMakeFiles/Nya.dir/main.cpp.o: ../main.cpp \
 
 /usr/include/c++/11/system_error:
 
+/usr/include/c++/11/cstddef:
+
 /usr/include/c++/11/bits/stl_vector.h:
 
 /usr/include/c++/11/ios:
@@ -1196,9 +1827,15 @@ CMakeFiles/Nya.dir/main.cpp.o: ../main.cpp \
 
 /usr/include/x86_64-linux-gnu/c++/11/bits/error_constants.h:
 
+/usr/include/c++/11/pstl/glue_algorithm_defs.h:
+
 /usr/include/c++/11/stdexcept:
 
+/usr/include/string.h:
+
 /usr/include/c++/11/bits/streambuf.tcc:
+
+/usr/local/include/llvm/IR/Function.h:
 
 /usr/include/c++/11/bits/atomic_lockfree_defines.h:
 
@@ -1209,6 +1846,8 @@ CMakeFiles/Nya.dir/main.cpp.o: ../main.cpp \
 /usr/include/c++/11/bits/exception.h:
 
 /usr/include/c++/11/bits/locale_facets.h:
+
+/usr/local/include/llvm/Config/llvm-config.h:
 
 /usr/include/c++/11/cwctype:
 
@@ -1221,6 +1860,10 @@ CMakeFiles/Nya.dir/main.cpp.o: ../main.cpp \
 /usr/include/c++/11/bits/locale_facets.tcc:
 
 /usr/include/c++/11/istream:
+
+/usr/local/include/llvm/IR/FPEnv.h:
+
+/usr/local/include/llvm/IR/Use.h:
 
 /usr/include/c++/11/bits/istream.tcc:
 
@@ -1240,9 +1883,13 @@ CMakeFiles/Nya.dir/main.cpp.o: ../main.cpp \
 
 /usr/include/c++/11/bits/stl_uninitialized.h:
 
+/usr/local/include/llvm/IR/PassManagerInternal.h:
+
 /usr/include/c++/11/backward/auto_ptr.h:
 
 /usr/include/c++/11/bits/stl_raw_storage_iter.h:
+
+/usr/local/include/llvm/ADT/APFloat.h:
 
 /usr/include/c++/11/bits/max_size_type.h:
 
@@ -1268,7 +1915,11 @@ CMakeFiles/Nya.dir/main.cpp.o: ../main.cpp \
 
 /usr/lib/gcc/x86_64-linux-gnu/11/include/limits.h:
 
+/usr/local/include/llvm/ADT/DenseMapInfo.h:
+
 /usr/include/x86_64-linux-gnu/bits/posix1_lim.h:
+
+/usr/local/include/llvm/IR/Constant.h:
 
 /usr/include/c++/11/string:
 
@@ -1278,6 +1929,8 @@ CMakeFiles/Nya.dir/main.cpp.o: ../main.cpp \
 
 /usr/include/x86_64-linux-gnu/bits/posix_opt.h:
 
+/usr/local/include/llvm/IR/TrackingMDRef.h:
+
 /usr/include/x86_64-linux-gnu/bits/setjmp.h:
 
 /usr/include/time.h:
@@ -1285,6 +1938,8 @@ CMakeFiles/Nya.dir/main.cpp.o: ../main.cpp \
 /usr/include/x86_64-linux-gnu/bits/getopt_posix.h:
 
 /usr/include/x86_64-linux-gnu/bits/unistd_ext.h:
+
+/usr/include/c++/11/list:
 
 /usr/include/c++/11/bits/uses_allocator_args.h:
 

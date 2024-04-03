@@ -15,7 +15,12 @@ std::vector<Token> Lexer::tokenize(std::string code) {
         if(std::isspace(c)){
             continue;
         }
-        if(std::isalpha(c)){
+        if(c == '/' && peek().has_value()){
+            while(peek().value() != '\n'){
+                eat();
+            }
+        }
+        else if(std::isalpha(c)){
             std::string word;
             word += c;
             while(peek().has_value() && std::isalnum(peek().value())){
@@ -41,7 +46,7 @@ std::vector<Token> Lexer::tokenize(std::string code) {
                 c = eat();
                 Op += c;
             }
-            if(c == '+' || c == '-' && peek().has_value() && peek().value() == c){
+            if((c == '+' || c == '-') && peek().has_value() && peek().value() == c){
                 c = eat();
                 Op += c;
                 tokens.push_back({TokenType::UN_OP, Op});
@@ -75,6 +80,7 @@ std::vector<Token> Lexer::tokenize(std::string code) {
             std::cerr << "UwU, it seems like someone has messed up >.> Whatever will u do?" << std::endl;
             exit(1);
         }
+
     }
     return tokens;
 }
