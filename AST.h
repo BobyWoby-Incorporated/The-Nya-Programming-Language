@@ -21,8 +21,8 @@
 #include "llvm/IR/Type.h"
 #include "llvm/IR/Verifier.h"
 
-static llvm::LLVMContext TheContext;
-static llvm::IRBuilder<> Builder(TheContext);
+static std::unique_ptr<llvm::LLVMContext> TheContext;
+static std::unique_ptr<llvm::IRBuilder<>> Builder;
 static std::unique_ptr<llvm::Module> TheModule;
 static std::map<std::tuple<TokenType, std::string>, llvm::Value *> NamedValues;
 
@@ -40,23 +40,26 @@ public:
 };
 
 class ScopeExprAST : public ExprAST {
-    std::vector<std::unique_ptr<ExprAST>> body;
+    std::unique_ptr<ExprAST> body;
+//    std::vector<std::unique_ptr<ExprAST>> body;
 public:
     llvm::Value *codegen() override{
-        for(auto &expr : body){
-            expr->codegen();
-        }
+//        for(auto &expr : body){
+//            expr->codegen();
+//        }
+        return body->codegen();
+        return nullptr;
     }
-    explicit ScopeExprAST(std::vector<std::unique_ptr<ExprAST>> body) : body(std::move(body)) {type = {TokenType::LEFT_BRACE};}
+//    explicit ScopeExprAST(std::vector<std::unique_ptr<ExprAST>> body) : body(std::move(body)) {type = {TokenType::LEFT_BRACE};}
+    explicit ScopeExprAST(std::unique_ptr<ExprAST> body) : body(std::move(body)) {type = {TokenType::LEFT_BRACE};}
 };
 
 class ReturnExprAST : public ExprAST {
 public:
 //    Token retTok;
     std::unique_ptr<ExprAST> retExpr;
-
     llvm::Value *codegen() override{
-        return Builder.CreateRetVoid();
+        return Builder->CreateRet(retExpr->codegen());
     }
     explicit ReturnExprAST(std::unique_ptr<ExprAST> retExpr) : retExpr(std::move(retExpr)) {type = {TokenType::RETURN};}
 };
@@ -65,7 +68,7 @@ class NumberExprAST : public ExprAST{
     Token token;
 public:
     llvm::Value *codegen() override {
-        return llvm::ConstantFP::get(TheContext, llvm::APFloat(stod(token.value.value())));
+        return llvm::ConstantFP::get(*TheContext, llvm::APFloat(stod(token.value.value())));
     };
     explicit NumberExprAST(Token token) : token(token) {type = token.type;}
 };
@@ -74,7 +77,7 @@ class StringExprAST : public ExprAST{
     Token token;
 public:
     llvm::Value *codegen() override {
-        return Builder.CreateGlobalString(llvm::StringRef(token.value.value()));
+        return Builder->CreateGlobalString(llvm::StringRef(token.value.value()));
     };
     explicit StringExprAST(Token token) : token(token) {type = token.type;}
 };
@@ -101,17 +104,30 @@ public:
         llvm::Value *L = lhs->codegen();
         llvm::Value *R = rhs->codegen();
         if(!L || !R) return nullptr;
-        if(op == "+") return Builder.CreateFAdd(L, R, "addtmp");
-        if(op == "-") return Builder.CreateFSub(L, R, "subtmp");
-        if(op == "*") return Builder.CreateFMul(L, R, "multmp");
-        if(op == "/") return Builder.CreateFDiv(L, R, "divtmp");
-        if(op == "<") return Builder.CreateFCmpULT(L, R, "cmptmp");
-        if(op == ">") return Builder.CreateFCmpULT(R, L, "cmptmp");
-
+        if(op == "+"){
+            if(lhs->type == TokenType::STR_VAR && rhs->type == TokenType::STR_VAR){
+                return Builder->CreateGlobalString(L->getName().str() + R->getName().str());
+            }
+            if(lhs->type == TokenType::NUM_VAR){
+                return Builder->CreateFAdd(L, R, "addtmp");
+            }
+        }
+        if(op == "="){
+            llvm::Value *V = NamedValues[std::tuple<TokenType, std::string>(lhs->type, lhs->type == TokenType::NUM_VAR ? lhs->codegen()->getName().str() : lhs->codegen()->getName().str())];
+            if(!V){
+                logErrorAST("This vawiable doesn't exist! (つ✧ω✧)つ♡ Nyaa~ ♡");
+            }
+            return Builder->CreateStore(R, V);
+        }
+        if(op == "-") return Builder->CreateFSub(L, R, "subtmp");
+        if(op == "*") return Builder->CreateFMul(L, R, "multmp");
+        if(op == "/") return Builder->CreateFDiv(L, R, "divtmp");
+        if(op == "<") return Builder->CreateFCmpULT(L, R, "cmptmp");
+        if(op == ">") return Builder->CreateFCmpULT(R, L, "cmptmp");
+        return nullptr;
     }
     BinaryExprAST(std::string op, std::unique_ptr<ExprAST> lhs, std::unique_ptr<ExprAST> rhs): op(std::move(op)), lhs(std::move(lhs)), rhs(std::move(rhs)){}
 };
-
 
 class CallExprAST : public ExprAST{
     std::string callee;
@@ -119,7 +135,15 @@ class CallExprAST : public ExprAST{
 
 public:
     llvm::Value * codegen() override{
-
+        llvm::Function *CalleeF = TheModule->getFunction(callee);
+        if(!CalleeF) logErrorAST("Unknown function referenced");
+        if(CalleeF->arg_size() != args.size()) logErrorAST("Incorrect number of arguments passed");
+        std::vector<llvm::Value *> ArgsV;
+        for(auto &arg : args){
+            ArgsV.push_back(arg->codegen());
+            if(!ArgsV.back()) return nullptr;
+        }
+        return Builder->CreateCall(CalleeF, ArgsV, "calltmp");
     }
     CallExprAST(std::string callee, std::vector<std::unique_ptr<ExprAST>> args) : callee(std::move(callee)), args(std::move(args)) {}
 };
@@ -129,16 +153,64 @@ class PrototypeExprAST : public ExprAST{
     TokenType returnType;
     std::vector<std::unique_ptr<VariableExprAST>> args;
 public:
-    llvm::Value * codegen() override{}
-    PrototypeExprAST(std::string name, TokenType returnType, std::vector<std::unique_ptr<VariableExprAST>> args): name(std::move(name)), returnType(returnType), args(std::move(args)){}
+    std::string getName() {return name;}
+    llvm::Function * codegen() override{
+        std::vector<llvm::Type *> types;
+        for(auto &arg : args){
+            if(arg->type == TokenType::NUM_VAR){
+                types.push_back(llvm::Type::getDoubleTy(*TheContext));
+            }
+            else if(arg->type == TokenType::STR_VAR){
+                // strings are an array of chars
+                types.push_back(llvm::PointerType::get(llvm::Type::getInt8Ty(*TheContext), 0));
+            }
+        }
+        llvm::FunctionType *FT;
+        if(returnType == TokenType::NUM_VAR){
+            FT = llvm::FunctionType::get(llvm::Type::getDoubleTy(*TheContext), types, false);
+        }
+        else if(returnType == TokenType::STR_VAR){
+            FT = llvm::FunctionType::get(llvm::PointerType::get(llvm::Type::getInt8Ty(*TheContext), 0), types, false);
+        }
+        llvm::Function *F = llvm::Function::Create(FT, llvm::Function::ExternalLinkage, name, TheModule.get());
+        unsigned Idx = 0;
+        for(auto &Arg : F->args()){
+            Arg.setName(args[Idx++]->codegen()->getName());
+        }
+        return F;
+    }
+    PrototypeExprAST(std::string n, TokenType returnType, std::vector<std::unique_ptr<VariableExprAST>> args): name(n), returnType(returnType), args(std::move(args)){
+        std::cout << "name: " << name << std::endl;
+    }
 };
 
 class FunctionExprAST : public ExprAST{
     std::unique_ptr<PrototypeExprAST> proto;
     std::unique_ptr<ExprAST> body;
 public:
-    llvm::Value * codegen() override{}
-    FunctionExprAST(std::unique_ptr<PrototypeExprAST> proto, std::variant<std::unique_ptr<ExprAST>, std::unique_ptr<BinaryExprAST>, std::unique_ptr<VariableExprAST>> body){}
+    llvm::Function * codegen() override{
+
+        llvm::Function *TheFunction = TheModule->getFunction(proto->getName());
+        if(!TheFunction) TheFunction = proto->codegen();
+
+        if(!TheFunction) {
+            std::cerr << "Function is null" << std::endl;
+            return nullptr;
+        }
+
+        if(!TheFunction->empty()) logErrorAST("Function cannot be redefined");
+        llvm::  BasicBlock *BB = llvm::BasicBlock::Create(*TheContext, "entry", TheFunction);
+        Builder->SetInsertPoint(BB);
+        NamedValues.clear();
+        if(llvm::Value *RetVal = body->codegen()){
+            Builder->CreateRet(RetVal);
+            llvm::verifyFunction(*TheFunction);
+            return TheFunction;
+        }
+        TheFunction->eraseFromParent();
+        return nullptr;
+    }
+    FunctionExprAST(std::unique_ptr<PrototypeExprAST> proto, std::unique_ptr<ExprAST> body) : proto(std::move(proto)), body(std::move(body)){}
 
 };
 

@@ -30,8 +30,10 @@ std::unique_ptr<ExprAST> Parser::parsePrimary(){
         case UN_OP:
             logError("This pawt isn't weady yet~! (ฅ́˘ฅ̀) ♡");
             return nullptr;
-
+        case RETURN:
+            return parseReturnExpr();
         default:
+            std::cerr << peek(0).value().type << std::endl;
             logError("Oopsie woopsie! Nyaa~ (´•ω•`) ♡ U didn't give me a vawid token, silly!");
             return nullptr;
     }
@@ -63,20 +65,12 @@ std::unique_ptr<ExprAST> Parser::parseParenExpr(){
 }
 
 std::unique_ptr<ExprAST> Parser::parseReturnExpr(){
-    //eat the return token
-    eat();
-
+    eat();  //eat the return token
     if(auto E = parseExpression()){
         return std::make_unique<ReturnExprAST>(std::move(E));
     }
-
-//    if(peek(0).value().type != IDENTIFIER && peek(0).value().type != NUMBER_LITERAL && peek(0).value().type != STRING_LITERAL){
-//        logError("That's nyot how weturning works, nya~! (≧◡≦) ♡");
-//    }
-//    auto token = eat();
-//    if(peek(0).value().type != ENDLINE) logError("U-uh! Nyaa, u need an uwu, dummy! (つ✧ω✧)つ♡");
-//    eat();
-//    return std::make_unique<ReturnExprAST>(token);
+    logError("thing broke");
+    return nullptr;
 }
 
 std::unique_ptr<ExprAST> Parser::parseBinOpRHS(int ExprPrec, std::unique_ptr<ExprAST> lhs){
@@ -147,7 +141,6 @@ std::unique_ptr<ExprAST> Parser::parseIdentifier(){
 
 std::unique_ptr<PrototypeExprAST> Parser::parsePrototype() {
     // funkywunky [nyamber] main pouncesOnU nyamber test pouncesOff
-
     if(peek(0).value().type != TokenType::STR_VAR && peek(0).value().type != TokenType::NUM_VAR)
     {
         logError("What woad is in this pwototype? (´｡• ω •｡`) ♡");
@@ -160,7 +153,6 @@ std::unique_ptr<PrototypeExprAST> Parser::parsePrototype() {
         return nullptr;
     }
     std::string FnName = eat().value.value(); // eat the identifier
-
 
     if(peek(0).value().type != TokenType::LEFT_PAREN){
         logError("Awww, u not gonna pounce on after making a funkywunky? (っ-‸-ς )");
@@ -186,30 +178,31 @@ std::unique_ptr<PrototypeExprAST> Parser::parsePrototype() {
 }
 
 std::unique_ptr<ScopeExprAST> Parser::parseScope() {
-    std::vector<std::unique_ptr<ExprAST>> body;
+//    std::vector<std::unique_ptr<ExprAST>> body;
+    std::unique_ptr<ExprAST> body;
     if(peek(0).value().type != TokenType::LEFT_BRACE) logError("U-uh! Nyaa, u need a '{', dummy! (つ✧ω✧)つ♡");
     eat(); // eat the {
-    while(peek(0).has_value() && peek(0).value().type != TokenType::RIGHT_BRACE){
+//    while(peek(0).has_value() && peek(0).value().type != TokenType::RIGHT_BRACE){
         if(peek(0).value().type == TokenType::ENDLINE){
             eat();
-            continue;
+//            continue;
         }
-        if(peek(0).value().type == TokenType::RETURN){
-            body.push_back(parseReturnExpr());
-            continue;
-        }
+//        if(peek(0).value().type == TokenType::RETURN){
+//            body.push_back(parseReturnExpr());
+//            continue;
+//        }
         if(auto E = parseExpression()){
-            body.push_back(std::move(E));
+//            body.push_back(std::move(E));
+            body = std::move(E);
         }
-    }
+//    }
     eat(); // eat the }
     return std::make_unique<ScopeExprAST>(std::move(body));
 }
 
 
-std::unique_ptr<FunctionExprAST> Parser::parseDefintion() {
+std::unique_ptr<FunctionExprAST> Parser::parseDefinition() {
     //TODO: Make A Scope AST Node so that I can parse right brace
-    //error isn't in the prototype
     // [funkywunky] nyamber main pouncesOnU nyamber test pouncesOff
     eat(); // eat def
     auto Proto = parsePrototype();
@@ -236,19 +229,32 @@ std::unique_ptr<FunctionExprAST> Parser::parseTopLevelExpr() {
 }
 
 std::vector<std::unique_ptr<ExprAST>> Parser::parse(std::vector<Token> inToks){
+    TheContext = std::make_unique<llvm::LLVMContext>();
+    TheModule = std::make_unique<llvm::Module>("my cool jit", *TheContext);
+    Builder = std::make_unique<llvm::IRBuilder<>>(*TheContext);
     tokens = std::move(inToks);
     std::vector<std::unique_ptr<ExprAST>> ASTNodes;
     while(peek(0).has_value()){
 //        if(!peek(0).has_value()) break;
         switch(peek(0).value().type){
             case TokenType::FUNCTION:
-                ASTNodes.push_back(parseDefintion());
+                if(auto FnAST = parseDefinition()){
+                    if(auto *FnIR = FnAST->codegen()){
+                        std::cout << "thing"<< std::endl;
+                        FnIR->print(llvm::errs());
+                    }
+                    ASTNodes.push_back(std::move(FnAST));
+                }
+                else{
+                    logError("rip");
+                }
                 break;
             case TokenType::ENDLINE:
                 eat();
                 break;
             case TokenType::EXTERN:
                 ASTNodes.push_back(parseExtern());
+                break;
             default:
                 ASTNodes.push_back(parseTopLevelExpr());
                 break;

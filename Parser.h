@@ -49,7 +49,7 @@ private:
 
     int getTokPrecedence();
 
-    std::unique_ptr<FunctionExprAST> parseDefintion();
+    std::unique_ptr<FunctionExprAST> parseDefinition();
 
     std::unique_ptr<PrototypeExprAST> parseExtern();
 
