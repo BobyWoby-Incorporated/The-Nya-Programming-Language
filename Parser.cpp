@@ -104,15 +104,13 @@ std::unique_ptr<ExprAST> Parser::parseExpression(){
 std::unique_ptr<ExprAST> Parser::parseIdentifier(){
     Token tmp = eat(); // eat the identifier
     if(tokens.at(index).type != TokenType::LEFT_PAREN && (tokens.at(index - 1).type == TokenType::NUM_VAR || tokens.at(index - 1).type == TokenType::STR_VAR)){
-        return std::make_unique<VariableExprAST>(tmp.value.value(), tokens.at(index - 1).type);
+        return std::make_unique<VariableExprAST>(tmp.value.value(), tokens.at(index - 1).type); // variable declaration
+    }
+    if(tokens.at(index).type != TokenType::LEFT_PAREN){
+        return std::make_unique<VariableExprAST>(tmp.value.value(), tmp.type); // variable reference
     }
     if((peek(0).value().type == TokenType::UN_OP || peek(-2).value().type == TokenType::UN_OP) && tmp.type == TokenType::NUM_VAR){
         std::string op = peek(0).value().value.value();
-//        if(op == "++"){
-//            Token numTok = Token({NUMBER_LITERAL, "1"});
-//            auto rhs = std::unique_ptr<BinaryExprAST>("+", tmp, std::move(std::make_unique<NumberExprAST>(numTok)));
-//            return std::make_unique<BinaryExprAST>("=", tmp, );
-//        }
         logError("This pawt isn't weady yet~! (ฅ́˘ฅ̀)♡");
         return nullptr;
 
@@ -178,24 +176,17 @@ std::unique_ptr<PrototypeExprAST> Parser::parsePrototype() {
 }
 
 std::unique_ptr<ScopeExprAST> Parser::parseScope() {
-//    std::vector<std::unique_ptr<ExprAST>> body;
-    std::unique_ptr<ExprAST> body;
+    std::vector<std::unique_ptr<ExprAST>> body;
     if(peek(0).value().type != TokenType::LEFT_BRACE) logError("U-uh! Nyaa, u need a '{', dummy! (つ✧ω✧)つ♡");
     eat(); // eat the {
-//    while(peek(0).has_value() && peek(0).value().type != TokenType::RIGHT_BRACE){
-        if(peek(0).value().type == TokenType::ENDLINE){
+    while(peek(0).value().type != RIGHT_BRACE){
+        if (peek(0).value().type == TokenType::ENDLINE) {
             eat();
-//            continue;
         }
-//        if(peek(0).value().type == TokenType::RETURN){
-//            body.push_back(parseReturnExpr());
-//            continue;
-//        }
-        if(auto E = parseExpression()){
-//            body.push_back(std::move(E));
-            body = std::move(E);
+        else if (auto E = parseExpression()) {
+            body.push_back(std::move(E));
         }
-//    }
+    }
     eat(); // eat the }
     return std::make_unique<ScopeExprAST>(std::move(body));
 }
@@ -212,7 +203,12 @@ std::unique_ptr<FunctionExprAST> Parser::parseDefinition() {
     if(auto E = parseScope()){
         return std::make_unique<FunctionExprAST>(std::move(Proto), std::move(E));
     }
-
+//    eat(); // eat the {
+//    if(auto E = parseExpression()){
+//        return std::make_unique<FunctionExprAST>(std::move(Proto), std::move(E));
+//    }
+//    if(peek(0).value().type != TokenType::RIGHT_BRACE) logError("U-uh! Nyaa, u need a '{', dummy! (つ✧ω✧)つ♡");
+//    eat(); // eat the }
     return nullptr;
 }
 std::unique_ptr<PrototypeExprAST> Parser::parseExtern() {
@@ -242,6 +238,7 @@ std::vector<std::unique_ptr<ExprAST>> Parser::parse(std::vector<Token> inToks){
                     if(auto *FnIR = FnAST->codegen()){
                         std::cout << "thing"<< std::endl;
                         FnIR->print(llvm::errs());
+
                     }
                     ASTNodes.push_back(std::move(FnAST));
                 }

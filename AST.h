@@ -40,18 +40,16 @@ public:
 };
 
 class ScopeExprAST : public ExprAST {
-    std::unique_ptr<ExprAST> body;
-//    std::vector<std::unique_ptr<ExprAST>> body;
+    std::vector<std::unique_ptr<ExprAST>> body;
 public:
     llvm::Value *codegen() override{
-//        for(auto &expr : body){
-//            expr->codegen();
-//        }
-        return body->codegen();
+        for(auto &expr : body){
+            expr->codegen();
+        }
         return nullptr;
     }
 //    explicit ScopeExprAST(std::vector<std::unique_ptr<ExprAST>> body) : body(std::move(body)) {type = {TokenType::LEFT_BRACE};}
-    explicit ScopeExprAST(std::unique_ptr<ExprAST> body) : body(std::move(body)) {type = {TokenType::LEFT_BRACE};}
+    explicit ScopeExprAST(std::vector<std::unique_ptr<ExprAST>> body) : body(std::move(body)) {type = {TokenType::LEFT_BRACE};}
 };
 
 class ReturnExprAST : public ExprAST {
@@ -86,14 +84,18 @@ class VariableExprAST : public ExprAST{
     std::string name;
     TokenType dataType;
 public:
+    std::string getName(){return name;}
     llvm::Value * codegen() override {
         llvm::Value *V = NamedValues[std::tuple<TokenType, std::string>(dataType, name)];
+        if(!V) {
+            V = NamedValues[std::tuple<TokenType, std::string>(TokenType::IDENTIFIER, name)];
+        }
         if(!V){
             logErrorAST("This vawiable doesn't exist! (つ✧ω✧)つ♡ Nyaa~ ♡");
         }
         return V;
     };
-    VariableExprAST(std::string name, TokenType dataType) : name(std::move(name)), dataType(dataType){}
+    VariableExprAST(std::string name, TokenType dataType) : name(std::move(name)), dataType(dataType){this->type = dataType;}
 };
 
 class BinaryExprAST : public ExprAST{
@@ -108,8 +110,23 @@ public:
             if(lhs->type == TokenType::STR_VAR && rhs->type == TokenType::STR_VAR){
                 return Builder->CreateGlobalString(L->getName().str() + R->getName().str());
             }
-            if(lhs->type == TokenType::NUM_VAR){
+            else if(lhs->type == TokenType::NUM_VAR){
                 return Builder->CreateFAdd(L, R, "addtmp");
+            }
+            else if(lhs->type == TokenType::NUMBER_LITERAL && rhs->type == TokenType::NUMBER_LITERAL){
+                return Builder->CreateFAdd(L, R, "addtmp");
+            }
+            else if(lhs->type == TokenType::STRING_LITERAL && rhs->type == TokenType::STRING_LITERAL){
+                return Builder->CreateGlobalString(L->getName().str() + R->getName().str());
+            }
+            else if(L->getType()->isFloatingPointTy() && R->getType()->isFloatingPointTy()){
+                return Builder->CreateFAdd(L, R, "addtmp");
+            }
+            else if(L->getType()->isPointerTy() && R->getType()->isPointerTy()){
+                return Builder->CreateGlobalString(L->getName().str() + R->getName().str());
+            }
+            else{
+                logErrorAST("Invalid operation");
             }
         }
         if(op == "="){
@@ -126,7 +143,7 @@ public:
         if(op == ">") return Builder->CreateFCmpULT(R, L, "cmptmp");
         return nullptr;
     }
-    BinaryExprAST(std::string op, std::unique_ptr<ExprAST> lhs, std::unique_ptr<ExprAST> rhs): op(std::move(op)), lhs(std::move(lhs)), rhs(std::move(rhs)){}
+    BinaryExprAST(std::string op, std::unique_ptr<ExprAST> lhs, std::unique_ptr<ExprAST> rhs): op(std::move(op)), lhs(std::move(lhs)), rhs(std::move(rhs)){ this->type = BIN_OP; }
 };
 
 class CallExprAST : public ExprAST{
@@ -153,6 +170,7 @@ class PrototypeExprAST : public ExprAST{
     TokenType returnType;
     std::vector<std::unique_ptr<VariableExprAST>> args;
 public:
+    TokenType getReturnType() {return returnType;}
     std::string getName() {return name;}
     llvm::Function * codegen() override{
         std::vector<llvm::Type *> types;
@@ -175,7 +193,7 @@ public:
         llvm::Function *F = llvm::Function::Create(FT, llvm::Function::ExternalLinkage, name, TheModule.get());
         unsigned Idx = 0;
         for(auto &Arg : F->args()){
-            Arg.setName(args[Idx++]->codegen()->getName());
+            Arg.setName(args[Idx++]->getName());
         }
         return F;
     }
@@ -189,26 +207,24 @@ class FunctionExprAST : public ExprAST{
     std::unique_ptr<ExprAST> body;
 public:
     llvm::Function * codegen() override{
-
         llvm::Function *TheFunction = TheModule->getFunction(proto->getName());
         if(!TheFunction) TheFunction = proto->codegen();
-
         if(!TheFunction) {
             std::cerr << "Function is null" << std::endl;
             return nullptr;
         }
-
         if(!TheFunction->empty()) logErrorAST("Function cannot be redefined");
-        llvm::  BasicBlock *BB = llvm::BasicBlock::Create(*TheContext, "entry", TheFunction);
+        llvm::BasicBlock *BB = llvm::BasicBlock::Create(*TheContext, "entry", TheFunction);
         Builder->SetInsertPoint(BB);
         NamedValues.clear();
-        if(llvm::Value *RetVal = body->codegen()){
-            Builder->CreateRet(RetVal);
-            llvm::verifyFunction(*TheFunction);
-            return TheFunction;
+        for(auto &Arg : TheFunction->args()){
+            NamedValues[std::tuple<TokenType, std::string>(proto->getReturnType(), Arg.getName().str())] = &Arg;
+            NamedValues[std::tuple<TokenType, std::string>(TokenType::IDENTIFIER, Arg.getName().str())] = &Arg;
         }
-        TheFunction->eraseFromParent();
-        return nullptr;
+        //codegen the scope that is the body of the function
+        body->codegen();
+        llvm::verifyFunction(*TheFunction);
+        return TheFunction;
     }
     FunctionExprAST(std::unique_ptr<PrototypeExprAST> proto, std::unique_ptr<ExprAST> body) : proto(std::move(proto)), body(std::move(body)){}
 
